@@ -1,12 +1,12 @@
+import AllPostComponents from "./AllPostComponents";
 import Navbar from "./Navbar";
-import PostComponent from "./PostComponent";
 
-export default function FeedPage(){
+export default function BlogPage(){
   return (
     <div className="bg-zinc-100 min-h-screen   mx-auto px-[30px]">
       <Navbar/>
       <div className="pt-8">
-        <PostComponent/>
+        <AllPostComponents/>
       </div>
     </div>
   )

@@ -1,29 +1,34 @@
 // components/feed/PostComponent.tsx
-import prisma from '@/lib/prisma'
 import { ThumbsUp, ThumbsDown, MessageCircle } from 'lucide-react'
 
-export default async function PostComponent() {
-  const posts = await prisma.post.findMany({
-    include: {
-      votes: true,
-      comments: true,
-    },
+interface Vote {
+  id : number
+  voteType : "UPVOTE" | "DOWNVOTE"
+}
+
+
+interface PostProps {
+  id : number
+  title : string | null
+  description : string | null
+  createdAt : Date 
+  commentsCount : number | null
+  votes : Vote[]
+}
+
+export default async function PostComponent({id, title, description, createdAt, commentsCount, votes}:PostProps) {
+  const date = createdAt.toLocaleDateString('en-IN', {
+    day: '2-digit',
+    month: 'long',
+    year: 'numeric',
   })
-
+  
+  const up = votes.filter((v) => v.voteType === 'UPVOTE').length
+  const down = votes.filter((v) => v.voteType === 'DOWNVOTE').length
+  
   return (
-    <div className="bg-zinc-100 text-black p-2 rounded-lg max-w-[800px] mx-auto px-[30px]">
-      {posts.map(({ id, title, description, createdAt, commentsCount, votes }) => {
-        const up = votes.filter((v) => v.voteType === 'UPVOTE').length
-        const down = votes.filter((v) => v.voteType === 'DOWNVOTE').length
-
-        const date = createdAt.toLocaleDateString('en-IN', {
-          day: '2-digit',
-          month: 'long',
-          year: 'numeric',
-        })
-
-        return (
-          <div key={id} className="mb-4 ">
+    <div key={id} className="bg-zinc-100 text-black p-2 rounded-lg max-w-[800px] mx-auto px-[30px]">
+          <div className="mb-4 ">
             <p className="text-zinc-500 tracking-tight text-sm ">{date}</p>
             <h2 className="text-blue-800 text-xl tracking-tighter cursor-pointer hover:underline">
               {title}
@@ -65,8 +70,6 @@ export default async function PostComponent() {
               </button>
             </div>
           </div>
-        )
-      })}
     </div>
   )
 }

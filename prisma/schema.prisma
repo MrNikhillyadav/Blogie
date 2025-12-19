@@ -80,7 +80,7 @@ model Vote {
   
   @@unique([commentId,userId])
   @@unique([postId,userId])
-  @@index([targetType])
+  @@unique([targetType,userId]) // modified : @@unique([targetType])
 }
 
 enum  VoteType{
