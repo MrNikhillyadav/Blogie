@@ -7,7 +7,7 @@ export default async function Blog({
 }: {
   params: { slug: string };
 }) {
-  const { slug } = await params;
+  const { slug } =  params;
 
   const post = await prisma.post.findFirst({
     where: { slug },

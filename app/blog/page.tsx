@@ -1,9 +1,5 @@
-import BlogPage from "@/components/feed/FeedPage";
+import BlogPage from "@/components/FeedPage";
 
 export default function Blog(){
-  return (
-    <div>
-      <BlogPage/>
-    </div>
-  )
+  return <BlogPage/>
 }
