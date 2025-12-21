@@ -7,7 +7,7 @@ interface Vote {
 }
 
 
-interface PostProps {
+export interface PostProps {
   id : number
   title : string | null
   description : string | null
@@ -16,7 +16,8 @@ interface PostProps {
   votes : Vote[]
 }
 
-export default async function PostComponent({id, title, description, createdAt, commentsCount, votes}:PostProps) {
+export default async function PostCard({id, title, description, createdAt, commentsCount, votes}:PostProps) {
+  
   const date = createdAt.toLocaleDateString('en-IN', {
     day: '2-digit',
     month: 'long',

@@ -1,7 +1,6 @@
-// components/feed/PostComponent.tsx
 import prisma from '@/lib/prisma'
-import PostComponent from './PostComponent'
 import Link from 'next/link'
+import PostCard from './PostCard'
 
 export default async function AllPostComponents() {
   
@@ -20,7 +19,7 @@ export default async function AllPostComponents() {
       { 
         posts.map((posts)=> (
               <Link href={`/blog/${posts.slug}`} key={posts.id} >
-                <PostComponent 
+                <PostCard 
                   id={posts.id} 
                   title={posts.title} 
                   description={posts.description} 
