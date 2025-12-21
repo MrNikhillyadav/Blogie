@@ -11,10 +11,16 @@ export default function Navbar(){
           </div>
           <h1 className="text-[26px] tracking-tighter text-zinc-700 ">  Nikhil Yadav Blogs </h1>
         </div>
-        <Link href={'/about'}
-            className=" tracking-tighter text-zinc-600 ">
-            About
-        </Link>
+          <div className="flex justify-between items-center gap-8">
+            <Link href={'/about'}
+                className=" tracking-tighter text-zinc-600 ">
+                About
+            </Link>
+            <Link href={'/dashboard'}
+                className=" tracking-tighter text-zinc-600 ">
+                Profile
+            </Link>
+          </div>
       </div>
     </div>
   )

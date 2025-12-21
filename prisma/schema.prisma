@@ -1,3 +1,4 @@
+
 generator client {
   provider = "prisma-client"
   output   = "../lib/generated/prisma"
@@ -8,82 +9,90 @@ datasource db {
 }
 
 model User {
-  id          String      @id @default(cuid())
-  name        String?
-  email       String?     @unique
-  password    String?
-  posts       Post[]
-  comments    Comment[]
-  votes       Vote[]
-  bookmark    Bookmark[]
+  id            String     @id @default(cuid())
+  name          String?
+  email         String?    @unique
+  password      String?
+  posts         Post[]
+  comments      Comment[]
+  votes         Vote[]
+  bookmark      Bookmark[]
+  emailVerified Boolean    @default(false)
+  image         String?
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
+  sessions      Session[]
+  accounts      Account[]
+
+  @@map("user")
 }
 
 model Post {
-  id            Int         @id @default(autoincrement())
+  id            Int        @id @default(autoincrement())
   title         String?
   description   String?
   userId        String
-  user          User        @relation(fields:[userId], references:[id])
-  createdAt     DateTime    @default(now())
+  user          User       @relation(fields: [userId], references: [id])
+  createdAt     DateTime   @default(now())
   slug          String
   image         String?
   comments      Comment[]
   bookmark      Bookmark[]
   votes         Vote[]
-  commentsCount Int         @default(0) 
+  commentsCount Int        @default(0)
 
   @@index([userId])
 }
 
 model Comment {
-  id            Int       @id @default(autoincrement())
-  content       String
-  postId        Int
-  commentedOn   Post      @relation(fields:[postId], references:[id] )
-  userId        String
-  user          User      @relation(fields:[userId], references:[id])
-  votes         Vote[]
-  parentId      Int?
-  parent        Comment?  @relation("CommentToComment", fields:[parentId], references:[id])
-  children      Comment[] @relation("CommentToComment")
-  upVotes       Int       @default(0)
-  downVotes     Int       @default(0)
-  repliesCount  Int       @default(0)
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt()
-  
+  id           Int       @id @default(autoincrement())
+  content      String
+  postId       Int
+  commentedOn  Post      @relation(fields: [postId], references: [id])
+  userId       String
+  user         User      @relation(fields: [userId], references: [id])
+  votes        Vote[]
+  parentId     Int?
+  parent       Comment?  @relation("CommentToComment", fields: [parentId], references: [id])
+  children     Comment[] @relation("CommentToComment")
+  upVotes      Int       @default(0)
+  downVotes    Int       @default(0)
+  repliesCount Int       @default(0)
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
   @@index([postId])
   @@index([userId])
   @@index([parentId])
 }
 
 model Bookmark {
-  id            Int       @id @default(autoincrement())
-  postId        Int
-  post          Post      @relation(fields:[postId], references:[id])
-  userId        String
-  user          User      @relation(fields:[userId], references:[id])
-  createdAt     DateTime  @default(now())
+  id        Int      @id @default(autoincrement())
+  postId    Int
+  post      Post     @relation(fields: [postId], references: [id])
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  createdAt DateTime @default(now())
 }
 
 model Vote {
-  id            Int       @id @default(autoincrement())
-  commentId     Int?
-  comment       Comment?   @relation(fields:[commentId], references:[id])
-  postId        Int?
-  post          Post?    @relation(fields:[postId], references:[id])
-  userId        String
-  user          User      @relation(fields:[userId], references:[id])
-  targetType    VoteTarget
-  voteType      VoteType
-  createdAt     DateTime  @default(now())
-  
-  @@unique([commentId,userId])
-  @@unique([postId,userId])
-  @@unique([targetType,userId]) // modified : @@unique([targetType])
+  id         Int        @id @default(autoincrement())
+  commentId  Int?
+  comment    Comment?   @relation(fields: [commentId], references: [id])
+  postId     Int?
+  post       Post?      @relation(fields: [postId], references: [id])
+  userId     String
+  user       User       @relation(fields: [userId], references: [id])
+  targetType VoteTarget
+  voteType   VoteType
+  createdAt  DateTime   @default(now())
+  // modified : @@unique([targetType])
+  @@unique([commentId, userId])
+  @@unique([postId, userId])
+  @@unique([targetType, userId])
 }
 
-enum  VoteType{
+enum VoteType {
   UPVOTE
   DOWNVOTE
 }
@@ -91,4 +100,52 @@ enum  VoteType{
 enum VoteTarget {
   POST
   COMMENT
+}
+
+model Session {
+  id        String   @id
+  expiresAt DateTime
+  token     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  ipAddress String?
+  userAgent String?
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([token])
+  @@index([userId])
+  @@map("session")
+}
+
+model Account {
+  id                    String    @id
+  accountId             String
+  providerId            String
+  userId                String
+  user                  User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  accessToken           String?
+  refreshToken          String?
+  idToken               String?
+  accessTokenExpiresAt  DateTime?
+  refreshTokenExpiresAt DateTime?
+  scope                 String?
+  password              String?
+  createdAt             DateTime  @default(now())
+  updatedAt             DateTime  @updatedAt
+
+  @@index([userId])
+  @@map("account")
+}
+
+model Verification {
+  id         String   @id
+  identifier String
+  value      String
+  expiresAt  DateTime
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@index([identifier])
+  @@map("verification")
 }
