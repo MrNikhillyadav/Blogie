@@ -6,8 +6,12 @@ export default async function AllPostComponents() {
   
   const posts = await prisma.post.findMany({
     include: {
-      votes: true,
-      comments: true,
+      votes: {
+        select : {
+          id : true,
+          voteType : true
+        },
+      },
     },
     orderBy:{
       createdAt : "desc"
