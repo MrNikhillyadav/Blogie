@@ -2,8 +2,8 @@ import Link from "next/link"
 
 export default function Navbar(){
   return (
-    <div className=" bg-zinc-100 text-black max-w-[800px] w-full mx-auto px-[30px]  ">
-      <div className="flex justify-between py-1 border-b border-zinc-200  items-center  ">
+    <div className="border-b py-4 border-zinc-200 bg-zinc-100">
+      <div className="text-zinc-600  flex justify-between text-sm max-w-[800px] w-full mx-auto px-[30px] ">
         <div className="flex gap-1 justify-between items-center">
           <div>
             <svg width="50" height="50" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">

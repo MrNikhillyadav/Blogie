@@ -1,14 +1,17 @@
-// components/feed/PostComponent.tsx
 import prisma from '@/lib/prisma'
-import PostComponent from './PostComponent'
 import Link from 'next/link'
+import PostCard from './PostCard'
 
 export default async function AllPostComponents() {
   
   const posts = await prisma.post.findMany({
     include: {
-      votes: true,
-      comments: true,
+      votes: {
+        select : {
+          id : true,
+          voteType : true
+        },
+      },
     },
     orderBy:{
       createdAt : "desc"
@@ -16,11 +19,11 @@ export default async function AllPostComponents() {
   })
 
   return (
-    <div className="space-y-4 max-w-[800px] mx-auto ">
+    <>
       { 
         posts.map((posts)=> (
               <Link href={`/blog/${posts.slug}`} key={posts.id} >
-                <PostComponent 
+                <PostCard 
                   id={posts.id} 
                   title={posts.title} 
                   description={posts.description} 
@@ -30,6 +33,6 @@ export default async function AllPostComponents() {
                 />
           </Link>))
       }
-    </div>
+    </>
   )
 }
