@@ -19,7 +19,7 @@ export default async function AllPostComponents() {
   })
 
   return (
-    <div className="space-y-4 max-w-[800px] mx-auto ">
+    <>
       { 
         posts.map((posts)=> (
               <Link href={`/blog/${posts.slug}`} key={posts.id} >
@@ -33,6 +33,6 @@ export default async function AllPostComponents() {
                 />
           </Link>))
       }
-    </div>
+    </>
   )
 }
