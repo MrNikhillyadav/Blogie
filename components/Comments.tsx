@@ -2,8 +2,6 @@ import { PostProps } from "./PostCard";
 import CommentCard from "./CommentCard";
 import { getPostComments } from "@/actions/action";
 
-
-
 export default async function PostComments({post}:{post : PostProps }){
   
   if(!post){

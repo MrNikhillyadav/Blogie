@@ -1,7 +1,5 @@
-// components/feed/PostComponent.tsx
-import { ThumbsUp, ThumbsDown, MessageCircle, HeartIcon } from 'lucide-react'
 
-interface Vote {
+export interface Vote {
   id : number
   voteType : "UPVOTE" | "DOWNVOTE"
 }
@@ -16,16 +14,13 @@ export interface PostProps {
   votes : Vote[]
 }
 
-export default async function PostCard({id, title, description, createdAt, commentsCount, votes}:PostProps) {
+export default async function PostCard({id, title, description, createdAt, votes}:PostProps) {
   
   const date = createdAt.toLocaleDateString('en-IN', {
     day: '2-digit',
     month: 'long',
     year: 'numeric',
   })
-  
-  const up = votes.filter((v) => v.voteType === 'UPVOTE').length
-  const down = votes.filter((v) => v.voteType === 'DOWNVOTE').length
   
   return (
     <div key={id} className="bg-zinc-100 text-black p-2 rounded-lg max-w-[800px] mx-auto px-[30px]">
@@ -35,8 +30,6 @@ export default async function PostCard({id, title, description, createdAt, comme
               {title}
             </h2>
             <p className="text-zinc-800 tracking-tight leading-6.5  ">{description}</p>
-
-           
           </div>
     </div>
   )

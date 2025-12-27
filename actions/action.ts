@@ -10,7 +10,7 @@ export const upvotePost = async (postId: number, userId: string) => {
     const response = await prisma.vote.create({
       data: {
         postId,
-        userId: "DGX35Dz2QgdFxmH6tFk5BimUaHqMjb0x",
+        userId: userId,
         targetType: "POST",
         commentId: null,
         voteType: "UPVOTE",
@@ -32,7 +32,7 @@ export const upVoteComment = async (commentId: number, userId: string) => {
     const response = await prisma.vote.create({
       data: {
         commentId,
-        userId: "DGX35Dz2QgdFxmH6tFk5BimUaHqMjb0x",
+        userId: "3zBRSpqIxsHdfgOGS304wcAKIZT39xfR",
         targetType: "COMMENT",
         postId: null,
         voteType: "UPVOTE",

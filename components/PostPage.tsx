@@ -7,8 +7,6 @@ import { getPostComments, getUser } from "@/actions/action";
 
 export default async function PostPage({post}: {post: PostProps | null }) {
   const  user = await getUser();
-  console.log("userid", user?.id);
-  console.log("username", user?.name);
   
   if (!post) {
     return (
@@ -19,7 +17,6 @@ export default async function PostPage({post}: {post: PostProps | null }) {
       </main>
     );
   }
-  console.log("post", JSON.stringify(post))
   const comments = await getPostComments(post.id)
 
   return (
