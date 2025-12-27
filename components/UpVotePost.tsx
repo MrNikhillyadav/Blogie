@@ -28,7 +28,7 @@ export default function UpVotePost({ post, userId }: { post: PostProps, userId: 
       className="group flex items-center gap-1 hover:text-orange-500 transition-colors"
     >
       <ThumbsUp 
-        className={isUpvoted ? 'w-4 h-4 text-blue-500 transition-transform duration-150 group-hover:scale-110 group-hover:fill-blue-500 group-hover:stroke-blue-500' : 'text-gray-400'} 
+        className={isUpvoted ? 'w-4 h-4 text-blue-500 transition-transform duration-150 group-hover:scale-110 group-hover:fill-blue-500 group-hover:stroke-blue-500' : 'w-4 h-4 text-gray-400'} 
       />
       {post?.votes.length}
     </button>

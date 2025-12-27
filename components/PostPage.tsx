@@ -3,11 +3,12 @@ import PostComments from "./Comments";
 import { PostProps } from "./PostCard";
 import {  MessageCircle} from "lucide-react";
 import UpVotePost from "./UpVotePost";
-import { getUser } from "@/actions/action";
+import { getPostComments, getUser } from "@/actions/action";
 
 export default async function PostPage({post}: {post: PostProps | null }) {
   const  user = await getUser();
-  console.log("user", user?.id);
+  console.log("userid", user?.id);
+  console.log("username", user?.name);
   
   if (!post) {
     return (
@@ -18,8 +19,8 @@ export default async function PostPage({post}: {post: PostProps | null }) {
       </main>
     );
   }
-  
-  console.log(JSON.stringify(post))
+  console.log("post", JSON.stringify(post))
+  const comments = await getPostComments(post.id)
 
   return (
     <main className="min-h-screen bg-zinc-100">
@@ -44,7 +45,7 @@ export default async function PostPage({post}: {post: PostProps | null }) {
                 <MessageCircle
                   className="w-4 h-4 transition-transform duration-150 group-hover:scale-110 group-hover:fill-orange-500 group-hover:stroke-orange-500"
                 />
-                {post.commentsCount} 
+                {comments.length + 1} 
               </button>
             </div>
           </div>

@@ -1,3 +1,6 @@
+"use client"
+
+import { upVoteComment } from "@/actions/action";
 import { getFormattedDate } from "@/lib/utils"
 import { MessageCircle, ThumbsDown, ThumbsUp } from "lucide-react"
 
@@ -21,7 +24,10 @@ interface User {
   email : string | null
 }
 
+
 export default function CommentCard({comment}:{comment:CommentProps}){
+
+  
   return (
     <div className="text-zinc-700 border border-zinc-300 bg-zinc-100 rounded-md mt-2 p-2">
       <p className="text-[16px] font-semibold text-zinc-700" >{comment.user.name}</p>
@@ -29,8 +35,14 @@ export default function CommentCard({comment}:{comment:CommentProps}){
       <p className="text-sm" >{comment.content}</p>
       
       <div className="flex mt-2 items-center justify-start gap-2">
-        <p className="flex text-xs text-zinc-600 items-center justify-start gap-1">
-          <ThumbsUp className="w-3 h-3 transition-transform duration-150 group-hover:scale-110 group-hover:fill-orange-500 group-hover:stroke-orange-500"/>
+        <p  className="flex text-xs text-zinc-600 items-center justify-start gap-1">
+          <ThumbsUp 
+          onClick={async () => {
+            const resp = await upVoteComment(comment?.id, comment?.user?.id);
+            console.log("resp:", resp);
+            console.log("upvoted")
+          }}
+          className="w-3 h-3 transition-transform duration-150 group-hover:scale-110 group-hover:fill-orange-500 group-hover:stroke-orange-500"/>
           {comment.upVotes}
         </p>
         <p className="flex text-xs text-zinc-600 items-center justify-start gap-1">

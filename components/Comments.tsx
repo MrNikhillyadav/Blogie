@@ -1,32 +1,8 @@
 import { PostProps } from "./PostCard";
-import  prisma from "@/lib/prisma"
 import CommentCard from "./CommentCard";
+import { getPostComments } from "@/actions/action";
 
 
-async function getPostComments(id: number){
-  const comments = await prisma.comment.findMany({
-     where: {
-       postId: id,
-       parentId: null,              // only top-level comments
-     },
-     include: {
-       user: {
-         select: { id: true, name: true, email: true },
-       },
-       children: {
-         include: {
-           user: {
-             select: { id: true, name: true, email: true },
-           },
-         },
-         orderBy: { createdAt: "asc" },
-       },
-     },
-     orderBy: { createdAt: "asc" },
-   });
-    
-  return comments ;
-} 
 
 export default async function PostComments({post}:{post : PostProps }){
   
@@ -41,8 +17,8 @@ export default async function PostComments({post}:{post : PostProps }){
   
   return (
     <div className="text-zinc-700">
-      <h2 className="border-b border-zinc-400">{comments.length} Comments</h2>
-      {comments.map((comment) =>(
+      <h2 className="border-b border-zinc-400">{comments.length +1} Comments</h2>
+      {comments && comments.map((comment) =>(
         <CommentCard key={comment.id} comment={comment} />
       ))}
     </div>

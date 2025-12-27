@@ -30,38 +30,39 @@ export default function SignInPage() {
       router.push("/blog");
     }
   }
-
   return (
-    <main className="max-w-md  h-screen flex items-center justify-center flex-col mx-auto p-6 space-y-4 text-white">
-      <h1 className="text-2xl font-bold">Sign In</h1>
-
-      {isError && <p className="text-xs text-red-400">{isError}</p>}
-
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <input
-          name="email"
-          type="email"
-          placeholder="Email"
-          required
-          className="w-full rounded-md bg-neutral-900 border border-neutral-700 px-3 py-2"
-        />
-        <input
-          name="password"
-          type="password"
-          placeholder="Password"
-          required
-          className="w-full rounded-md bg-neutral-900 border border-neutral-700 px-3 py-2"
-        />
-        <button
-          type="submit"
-          className="w-full cursor-pointer bg-white text-black font-medium rounded-md px-4 py-2 hover:bg-gray-200"
-        >
-           {isSubmitting ? 'Signing in...' : 'Sign In'}
-        </button>
-        <p className="text-center cursor-pointer text-zinc-600 ">
-          Don&apos;t have an account? <Link className="cursor-pointer hover:underline" href="/sign-up">Sign Up</Link>
-        </p>
-      </form>
+    <main className="min-h-[80vh] w-full  bg-zinc-100 ">
+     <div  className="max-w-md  full flex py-20 items-center justify-center flex-col mx-auto p-6 space-y-4">
+       <h1 className="text-2xl text-neutral-900 font-bold">Sign In</h1>
+ 
+       {isError && <p className="text-xs text-red-400">{isError}</p>}
+ 
+       <form onSubmit={handleSubmit} className="space-y-4">
+         <input
+           name="email"
+           type="email"
+           placeholder="Email"
+           required
+           className="w-full rounded-md bg-zinc-50 border border-zinc-200 text-zinc-700 px-3 py-2"
+         />
+         <input
+           name="password"
+           type="password"
+           placeholder="Password"
+           required
+           className="w-full rounded-md bg-zinc-50 border border-zinc-200 text-zinc-700 px-3 py-2"
+         />
+         <button
+           type="submit"
+           className="w-full cursor-pointer bg-neutral-900  border-neutral-700 text-zinc-100 font-medium rounded-md px-4 py-2 hover:bg-gray-800"
+         >
+            {isSubmitting ? 'Signing in...' : 'Sign In'}
+         </button>
+         <p className="text-center cursor-pointer text-zinc-600 ">
+           Don&apos;t have an account? <Link className="cursor-pointer hover:underline" href="/sign-up">Sign Up</Link>
+         </p>
+       </form>
+     </div>
     </main>
   );
 }
