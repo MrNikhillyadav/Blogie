@@ -2,7 +2,7 @@
 
 import { upVoteComment } from "@/actions/action";
 import { getFormattedDate } from "@/lib/utils"
-import { MessageCircle, ThumbsDown, ThumbsUp } from "lucide-react"
+import { ArrowBigDown, ArrowBigUp, MessageCircle, ThumbsDown, ThumbsUp } from "lucide-react"
 import { Vote } from "./PostCard";
 
 
@@ -40,13 +40,13 @@ export default function CommentCard({comment}:{comment:CommentProps}){
       {/* upvotes/downvotes/replies */}
       <div className="flex mt-2 items-center justify-start gap-2">
         <p  className="group flex text-xs text-zinc-600 items-center justify-start gap-1">
-          <ThumbsUp 
+          <ArrowBigUp  
             onClick={() => upVoteComment(comment.id)}
             className="w-3 h-3 transition-transform duration-150 group-hover:scale-110 group-hover:fill-orange-500 group-hover:stroke-orange-500"/>
           {comment.upVotes}
         </p>
         <p className="group flex text-xs text-zinc-600 items-center justify-start gap-1">
-          <ThumbsDown className="w-3 h-3 transition-transform duration-150 group-hover:scale-110 group-hover:fill-orange-500 group-hover:stroke-orange-500"/>
+          <ArrowBigDown className="w-4 h-3 transition-transform duration-150 group-hover:scale-110 group-hover:fill-orange-500 group-hover:stroke-orange-500"/>
         {comment.downVotes}
         </p>
         <p className="group flex text-xs text-zinc-600 items-center justify-start gap-1">
