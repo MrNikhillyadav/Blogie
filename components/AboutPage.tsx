@@ -1,6 +1,6 @@
 'use client'
 
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft,Github } from 'lucide-react';
 import Link from 'next/link';
 
 export default function AboutPage() {
@@ -21,7 +21,13 @@ export default function AboutPage() {
               <h1 className="text-2xl text-center font-semibold tracking-tight mb-4">
                 About
               </h1>
-              <p className="text-zinc-600">See my <a className=" text-blue-700 hover:text-blue-800 underline" href={'https://github.com/MrNikhillyadav'}>GitHub.</a> </p>
+              <p className="text-zinc-600 flex items-center justify-center gap-1">
+                See my 
+                <a className=" text-orange-700 flex items-center justify-center hover:text-blue-800" href={'https://github.com/MrNikhillyadav'}>
+                  <Github className="w-4 h-4 rounded-full " />
+                  GitHub.
+                </a> 
+              </p>
             </div>
         </section>
       </div>

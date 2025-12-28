@@ -47,11 +47,11 @@ export default function DashboardPage() {
           </Link>
 
           <div className="mt-6 flex flex-col items-center text-center space-y-2">
-              <User className="w-12 h-12 text-orange-600" />
-            <h1 className="text-2xl text-zinc-600 font-semibold tracking-tight">
+              <User className="w-8 h-8 text-orange-600" />
+            <h1 className="text-xl text-zinc-600 font-semibold tracking-tight">
               Profile
             </h1>
-           <div className="flex flex-col my-2 items-center justify-center">
+           <div className="flex flex-col text-sm my-2 items-center justify-center">
              {user?.name && (
               <p className="text-zinc-600">Name: {user.name}</p>
             )}
@@ -63,7 +63,7 @@ export default function DashboardPage() {
             <button
               onClick={handleSignOut}
               disabled={isSigningOut}
-              className="mt-4 bg-orange-600 hover:bg-orange-500 transition-colors duration-200 px-4 py-2 rounded-md text-white cursor-pointer disabled:opacity-60"
+              className="mt-4 bg-orange-600 text-xs hover:bg-orange-500 transition-colors duration-200 px-4 py-2 rounded-md text-white cursor-pointer disabled:opacity-60"
             >
               {isSigningOut ? "Signing Out..." : "Sign Out"}
             </button>

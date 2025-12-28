@@ -6,18 +6,18 @@ export default function Navbar(){
       <div className="text-zinc-600  flex justify-between text-sm max-w-[800px] w-full mx-auto px-[30px] ">
         <div className="flex gap-1 justify-between items-center">
           <div>
-            <svg width="50" height="50" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <svg width="30" height="30" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path fill="orangered" d="M6.962 2.421c1.276-.171 2.908-.171 4.981-.171h.114c2.073 0 3.705 0 4.98.171c1.31.176 2.354.545 3.175 1.367c.822.821 1.19 1.866 1.367 3.174c.171 1.276.171 2.908.171 4.981v.114c0 2.073 0 3.705-.171 4.98c-.176 1.31-.545 2.354-1.367 3.175c-.821.822-1.866 1.19-3.174 1.367c-1.276.171-2.908.171-4.981.171h-.114c-2.073 0-3.705 0-4.98-.171c-1.31-.176-2.354-.545-3.175-1.367c-.822-.821-1.19-1.866-1.367-3.174c-.171-1.276-.171-2.908-.171-4.981v-.114c0-2.073 0-3.705.171-4.98c.176-1.31.545-2.354 1.367-3.175c.821-.822 1.866-1.19 3.174-1.367m4.773 4.432a.75.75 0 0 0-1.431-.132L8.492 11.25H7a.75.75 0 0 0 0 1.5h2a.75.75 0 0 0 .696-.472l1.063-2.657l1.506 7.526a.75.75 0 0 0 1.431.132l1.812-4.529H17a.75.75 0 0 0 0-1.5h-2a.75.75 0 0 0-.696.471L13.24 14.38z"/></svg>
           </div>
           <h1 className="text-[26px] tracking-tighter text-zinc-700 ">  Nikhil Yadav Blogs </h1>
         </div>
           <div className="flex justify-between items-center gap-8">
             <Link href={'/about'}
-                className=" tracking-tighter text-zinc-600 ">
+                className=" hover:text-orange-600 transition-all duration-150 tracking-tighter text-zinc-600 ">
                 About
             </Link>
             <Link href={'/dashboard'}
-                className=" tracking-tighter text-zinc-600 ">
+                className=" hover:text-orange-600 transition-all duration-150 tracking-tighter text-zinc-600 ">
                 Profile
             </Link>
           </div>
