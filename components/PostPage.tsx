@@ -5,9 +5,9 @@ import {  MessageCircle} from "lucide-react";
 import UpVotePost from "./UpVotePost";
 import { getPostComments, getUser } from "@/actions/action";
 
+  
 export default async function PostPage({post}: {post: PostProps | null }) {
   const  user = await getUser();
-  console.log("user", user)
   
   if (!post) {
     return (
@@ -33,7 +33,7 @@ export default async function PostPage({post}: {post: PostProps | null }) {
           <div className=" text-xs flex gap-2 text-zinc-500 py-2 ">
             <div className=" flex flex-row justify-start  gap-4  items-center text-zinc-500 text-sm">
               {/* Upvotes */}
-              <UpVotePost post={post} userId={user?.id.toString() || ""} />
+              <UpVotePost post={post} userId={user?.id?.toString() || ""} />
                  
               {/* Comments */}
               <button

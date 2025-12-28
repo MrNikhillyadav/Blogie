@@ -1,16 +1,17 @@
 "use server";
 
 import prisma from "@/lib/prisma";
-import { getSession } from "better-auth/api";
+import { authSession } from "@/lib/auth-utils";
 
-export const upvotePost = async (postId: number, userId: string) => {
-  if (!postId || !userId) return;
+export const upvotePost = async (postId: number) => {
+  const session = await authSession();
+  if (!postId || !session?.user.id) return;
 
   try {
     const response = await prisma.vote.create({
       data: {
         postId,
-        userId: userId,
+        userId: session?.user.id,
         targetType: "POST",
         commentId: null,
         voteType: "UPVOTE",
@@ -25,14 +26,15 @@ export const upvotePost = async (postId: number, userId: string) => {
   }
 };
 
-export const upVoteComment = async (commentId: number, userId: string) => {
-  if (!commentId || !userId) return;
-
+export const upVoteComment = async (commentId: number) => {
+  const session = await authSession();
+  if (!commentId || !session?.user.id) return;
+  
   try {
     const response = await prisma.vote.create({
       data: {
         commentId,
-        userId: "3zBRSpqIxsHdfgOGS304wcAKIZT39xfR",
+        userId: session?.user.id,
         targetType: "COMMENT",
         postId: null,
         voteType: "UPVOTE",
@@ -48,41 +50,47 @@ export const upVoteComment = async (commentId: number, userId: string) => {
 };
 
 export async function getUser() {
-  const session = getSession();
-  console.log("session in getUser: ", session)
+  try {
+    const session = await authSession();
+    
+    if (!session?.user?.id) {
+      console.log("getUser: No session or user ID");
+      return null; 
+    }
 
-  const user = await prisma.user.findFirst({
-    where: {
-      id: session?.userId,
-    },
-  });
-  
-  console.log("user in action.ts: ", user)
-  return user;
+    const user = await prisma.user.findUnique({
+      where: { id: session.user.id }
+    });
+
+    return user;
+  } 
+  catch (error) {
+    console.error("getUser error:", error);
+    return null;
+  }
 }
 
 export async function getPostComments(id: number){
   const comments = await prisma.comment.findMany({
-     where: {
-       postId: id,
-       parentId: null,              // only top-level comments
-     },
-     include: {
-       user: {
-         select: { id: true, name: true, email: true },
-       },
-       children: {
-         include: {
-           user: {
-             select: { id: true, name: true, email: true },
-           },
-         },
-         orderBy: { createdAt: "asc" },
-       },
-     },
-     orderBy: { createdAt: "asc" },
-   });
-  
-  return comments ;
-} 
+    where: {
+      postId: id,
+      parentId: null, // only top-level comments
+    },
+    include: {
+      user: {
+        select: { id: true, name: true, email: true },
+      },
+      children: {
+        include: {
+          user: {
+            select: { id: true, name: true, email: true },
+          },
+        },
+        orderBy: { createdAt: "asc" },
+      },
+    },
+    orderBy: { createdAt: "asc" },
+  });
 
+  return comments;
+}

@@ -28,7 +28,6 @@ interface User {
 
 
 export default function CommentCard({comment}:{comment:CommentProps}){
-  console.log("comments:", JSON.stringify(comment))
   return (
     <div className="text-zinc-700 border border-zinc-300 bg-zinc-100 rounded-md mt-2 p-2">
       <p className="text-[16px] font-semibold text-zinc-700" >{comment.user.name}</p>
