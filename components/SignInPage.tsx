@@ -10,7 +10,6 @@ export default function SignInPage() {
   const [isError, setIsError] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
- 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setIsError(null);
@@ -30,6 +29,7 @@ export default function SignInPage() {
       router.push("/blog");
     }
   }
+  
   return (
     <main className="min-h-[80vh] w-full  bg-zinc-100 ">
      <div  className="max-w-md  full flex py-20 items-center justify-center flex-col mx-auto p-6 space-y-4">

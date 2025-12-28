@@ -49,12 +49,15 @@ export const upVoteComment = async (commentId: number, userId: string) => {
 
 export async function getUser() {
   const session = getSession();
+  console.log("session in getUser: ", session)
 
   const user = await prisma.user.findFirst({
     where: {
-      id: session?.user?.id,
+      id: session?.userId,
     },
   });
+  
+  console.log("user in action.ts: ", user)
   return user;
 }
 
@@ -80,7 +83,6 @@ export async function getPostComments(id: number){
      orderBy: { createdAt: "asc" },
    });
   
-  console.log("comments", JSON.stringify(comments))
   return comments ;
 } 
 

@@ -7,6 +7,7 @@ import { getPostComments, getUser } from "@/actions/action";
 
 export default async function PostPage({post}: {post: PostProps | null }) {
   const  user = await getUser();
+  console.log("user", user)
   
   if (!post) {
     return (
