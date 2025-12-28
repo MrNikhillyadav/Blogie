@@ -14,7 +14,7 @@ export interface PostProps {
   votes : Vote[]
 }
 
-export default async function PostCard({id, title, description, createdAt, votes}:PostProps) {
+export default async function PostCard({id, title, description, createdAt}:PostProps) {
   
   const date = createdAt.toLocaleDateString('en-IN', {
     day: '2-digit',

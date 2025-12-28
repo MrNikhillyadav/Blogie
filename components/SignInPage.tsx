@@ -31,7 +31,7 @@ export default function SignInPage() {
   }
   
   return (
-    <main className="min-h-[80vh] w-full  bg-zinc-100 ">
+    <main className="min-h-screen flex items-center justify-center w-full  bg-zinc-100 ">
      <div  className="max-w-md  full flex py-20 items-center justify-center flex-col mx-auto p-6 space-y-4">
        <h1 className="text-2xl text-neutral-900 font-bold">Sign In</h1>
  

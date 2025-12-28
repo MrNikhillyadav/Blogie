@@ -5,14 +5,14 @@ import { ThumbsUp } from "lucide-react";
 import { useState } from "react";
 import { PostProps } from "./PostCard";
 
-export default function UpVotePost({ post, userId }: { post: PostProps, userId: string }) {
+export default function UpVotePost({ post}: { post: PostProps }) {
   const [isUpvoted, setIsUpvoted] = useState(false);
 
   const handleUpvote = async () => {
     if (!post) return;
     
     try {
-       await upvotePost(post.id, userId);
+       await upvotePost(post.id);
       setIsUpvoted(true);
     }
     catch (error) {
