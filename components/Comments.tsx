@@ -15,9 +15,9 @@ export default async function PostComments({post}:{post : PostProps }){
   
   return (
     <div className="text-zinc-700">
-      <h2 className="border-b border-zinc-400">{comments.length +1} Comments</h2>
+      <h2 className="border-b border-zinc-400">{comments.length} Comments</h2>
       {comments && comments.map((comment) =>(
-        <CommentCard key={comment.id} comment={comment} />
+        <CommentCard key={comment.id} comment={comment}  />
       ))}
     </div>
   )

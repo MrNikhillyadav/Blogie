@@ -50,7 +50,7 @@ export default async function PostPage({post}: {post: PostProps | null }) {
                 <MessageCircle
                   className="w-4 h-4 transition-transform duration-150 group-hover:scale-110 group-hover:fill-orange-500 group-hover:stroke-orange-500"
                 />
-                {comments.length + 1}
+                {comments.length }
               </button>
             </div>
           </div>

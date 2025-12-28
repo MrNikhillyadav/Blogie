@@ -5,9 +5,11 @@ import { signOut, useSession } from "@/lib/auth-client";
 import { useState } from "react";
 import { ArrowLeft, User } from "lucide-react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export default function DashboardPage() {
   const { data } = useSession();
+  const router = useRouter();
   const [isSigningOut, setIsSigningOut] = useState(false);
 
   const session = data?.session;
@@ -30,6 +32,7 @@ export default function DashboardPage() {
       await signOut();
     } finally {
       setIsSigningOut(false);
+      router.push('/sign-in');
     }
   }
 

@@ -29,7 +29,7 @@ export default async function PostCard({id, title, description, createdAt}:PostP
             <h2 className="text-blue-800 text-xl tracking-tighter cursor-pointer hover:underline">
               {title}
             </h2>
-            <p className="text-zinc-800 tracking-tight leading-6.5  ">{description}</p>
+            <p className="text-zinc-800 tracking-tight leading-6.5  ">{description?.substring(0, 275)}.</p>
           </div>
     </div>
   )

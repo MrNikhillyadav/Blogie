@@ -1,7 +1,8 @@
 import { headers } from "next/headers";
 import { auth } from "./auth";
+import { cache } from "react";
 
-export const authSession = async () => {
+export const authSession = cache(async () => {
   try {
     const session = auth.api.getSession({ headers: await headers() });
 
@@ -13,4 +14,4 @@ export const authSession = async () => {
   } catch {
     throw new Error("Authentication failed");
   }
-};
+});
