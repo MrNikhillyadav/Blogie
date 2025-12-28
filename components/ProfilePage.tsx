@@ -18,7 +18,7 @@ export default function DashboardPage() {
     return (
       <main className=" bg-zinc-100">
         <div className="max-w-[800px] mx-auto px-4 py-10">
-          <p className="text-[15px] text-zinc-600">Redirecting…</p>
+          <p className="text-[15px] text-zinc-600 text-center">loading…</p>
         </div>
       </main>
     );
@@ -49,11 +49,11 @@ export default function DashboardPage() {
           <div className="mt-6 flex flex-col items-center text-center space-y-2">
               <User className="w-8 h-8 text-orange-600" />
             <h1 className="text-xl text-zinc-600 font-semibold tracking-tight">
-              Profile
+              H! {user?.name || 'Anonymous'}
             </h1>
            <div className="flex flex-col text-sm my-2 items-center justify-center">
              {user?.name && (
-              <p className="text-zinc-600">Name: {user.name}</p>
+              <p className="text-zinc-600">Username: {user.name}</p>
             )}
             <p className="text-zinc-600">
               Email : <span className="font-normal">{user?.email}</span>
@@ -63,7 +63,7 @@ export default function DashboardPage() {
             <button
               onClick={handleSignOut}
               disabled={isSigningOut}
-              className="mt-4 bg-orange-600 text-xs hover:bg-orange-500 transition-colors duration-200 px-4 py-2 rounded-md text-white cursor-pointer disabled:opacity-60"
+              className="mt-4 bg-neutral-300  shadow-sm border-neutral-200 text-xs hover:bg-neutral-400 transition-colors duration-200 px-4 py-2 rounded-md text-white cursor-pointer disabled:opacity-60"
             >
               {isSigningOut ? "Signing Out..." : "Sign Out"}
             </button>
