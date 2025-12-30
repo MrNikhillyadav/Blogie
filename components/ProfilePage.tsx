@@ -1,9 +1,8 @@
 "use client";
 
-
 import { signOut, useSession } from "@/lib/auth-client";
 import { useState } from "react";
-import { ArrowLeft, User } from "lucide-react";
+import { ArrowLeft, User, Mail, User as UserIcon } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
@@ -14,7 +13,6 @@ export default function DashboardPage() {
 
   const session = data?.session;
   const user = data?.user;
-
 
   if (!session) {
     return (
@@ -49,24 +47,35 @@ export default function DashboardPage() {
             </button>
           </Link>
 
-          <div className="mt-6 flex flex-col items-center text-center space-y-2">
-              <User className="w-8 h-8 text-orange-600" />
-            <h1 className="text-xl text-zinc-600 font-semibold tracking-tight">
-              H! {user?.name || 'Anonymous'}
+          <div className="mt-6 flex flex-col items-center text-center space-y-6">
+            <User className="w-8 h-8 text-orange-600" />
+            <h1 className="text-xl text-orange-600 font-semibold tracking-tight">
+              Hi! {user?.name || 'Anonymous'}
             </h1>
-           <div className="flex flex-col text-sm my-2 items-center justify-center">
-             {user?.name && (
-              <p className="text-zinc-600">Username: {user.name}</p>
-            )}
-            <p className="text-zinc-600">
-              Email : <span className="font-normal">{user?.email}</span>
-            </p>
+            
+            <div className="w-full max-w-xs space-y-4">
+              {user?.name && (
+                <div className="flex items-center gap-3 p-2 border border-orange-200  text-sm rounded-lg">
+                  <UserIcon className="w-4 h-4 text-orange-600 " />
+                  <div>
+                    <p className="text-zinc-600">Username: {user.name}</p>
+                  </div>
+                </div>
+              )}
+              <div className="flex items-center gap-3 p-2  border border-orange-200 text-sm rounded-lg">
+                <Mail className="w-4 h-4 text-orange-600 " />
+                <div>
+                  <p className="text-zinc-600">
+                    Email: <span className="font-normal">{user?.email}</span>
+                  </p>
+                </div>
+              </div>
             </div>
 
             <button
               onClick={handleSignOut}
               disabled={isSigningOut}
-              className="mt-4 bg-neutral-300  shadow-sm border-neutral-200 text-xs hover:bg-neutral-400 transition-colors duration-200 px-4 py-2 rounded-md text-white cursor-pointer disabled:opacity-60"
+              className="w-full max-w-xs bg-orange-600 shadow-sm border-orange-400 text-xs hover:bg-orange-500 transition-colors duration-200 px-4 py-2 rounded-md text-white cursor-pointer disabled:opacity-60"
             >
               {isSigningOut ? "Signing Out..." : "Sign Out"}
             </button>
