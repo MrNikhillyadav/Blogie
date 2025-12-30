@@ -4,10 +4,9 @@ import { PostProps } from "./PostCard";
 import {  ArrowLeft, MessageCircle} from "lucide-react";
 import UpVotePost from "./UpVotePost";
 import { getPostComments} from "@/actions/action";
-import Link from "next/link"; 
+import Link from "next/link";
 
-export default async function PostPage({post}: {post: PostProps | null }) {
-
+export default async function PostPage({ post }: { post: PostProps | null }) {
   if (!post) {
     return (
       <main className="min-h-screen bg-zinc-100">
@@ -17,7 +16,8 @@ export default async function PostPage({post}: {post: PostProps | null }) {
       </main>
     );
   }
-  const comments = await getPostComments(post.id)
+  const postId = post?.id;
+  const comments = await getPostComments(postId)
 
   return (
     <main className="min-h-screen bg-zinc-100">
@@ -55,7 +55,10 @@ export default async function PostPage({post}: {post: PostProps | null }) {
             </div>
           </div>
           <p className="text-[15px] text-zinc-600">
-            {post?.description}
+            {post?.description
+              }
+              
+            
           </p>
         </div>
       <PostComments post={post} />
