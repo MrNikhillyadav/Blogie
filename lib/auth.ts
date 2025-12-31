@@ -17,6 +17,19 @@ export const auth = betterAuth({
     expiresIn: 60 * 60 * 24 * 7, // 7 days
   },
   
+  socialProviders: {
+         github: { 
+             clientId: process.env.GITHUB_CLIENT_ID!, 
+             clientSecret: process.env.GITHUB_CLIENT_SECRET!, 
+             prompt: "select_account",
+         }, 
+         google: { 
+             clientId: process.env.GOOGLE_CLIENT_ID!, 
+             clientSecret: process.env.GOOGLE_CLIENT_SECRET!, 
+             prompt: "select_account",
+         }, 
+     },
+  
   plugins: [
     nextCookies(),
   ]

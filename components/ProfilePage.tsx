@@ -5,6 +5,7 @@ import { useState } from "react";
 import { ArrowLeft, User, Mail, User as UserIcon } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 export default function DashboardPage() {
   const { data } = useSession();
@@ -48,7 +49,17 @@ export default function DashboardPage() {
           </Link>
 
           <div className="mt-6 flex flex-col items-center text-center space-y-6">
-            <User className="w-8 h-8 text-orange-600" />
+            {user?.image ? (
+              <Image 
+                width={96}
+                height={96}
+                src={user.image} 
+                alt={user.name} 
+                className="w-24 h-24 rounded-full" />
+            ) : (
+              <User className="w-8 h-8 text-orange-600" />
+            )}
+            
             <h1 className="text-xl text-orange-600 font-semibold tracking-tight">
               Hi! {user?.name || 'Anonymous'}
             </h1>
