@@ -99,7 +99,6 @@ export async function getPostComments(id: number) {
   });
 }
 
-
 export async function commentOnPost(postId: number, content: string) { 
   const session = await authSession();
   if (!session?.user.id || !content?.trim()) return;

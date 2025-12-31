@@ -1,6 +1,7 @@
 'use client'
 
-import { ArrowLeft,Github } from 'lucide-react';
+import { ArrowLeft } from 'lucide-react';
+import { IoLogoGithub } from "react-icons/io";
 import Link from 'next/link';
 
 export default function AboutPage() {
@@ -24,7 +25,7 @@ export default function AboutPage() {
               <p className="text-zinc-600 flex items-center justify-center gap-1">
                 See my 
                 <a className=" text-orange-700 flex items-center justify-center hover:text-blue-800" href={'https://github.com/MrNikhillyadav'}>
-                  <Github className="w-4 h-4 rounded-full " />
+                  <IoLogoGithub className="w-4 h-4 rounded-full " />
                   GitHub.
                 </a> 
               </p>

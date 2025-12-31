@@ -4,18 +4,17 @@ import { signOut, useSession } from "@/lib/auth-client";
 import { useState } from "react";
 import { ArrowLeft, User, Mail, User as UserIcon } from "lucide-react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import Image from "next/image";
 
 export default function DashboardPage() {
   const { data } = useSession();
-  const router = useRouter();
   const [isSigningOut, setIsSigningOut] = useState(false);
 
   const session = data?.session;
   const user = data?.user;
+  
 
-  if (!session) {
+  if (!session || !user) {
     return (
       <main className=" bg-zinc-100">
         <div className="max-w-[800px] mx-auto px-4 py-10">
@@ -28,10 +27,10 @@ export default function DashboardPage() {
   async function handleSignOut() {
     try {
       setIsSigningOut(true);
-      await signOut();
+      await signOut(); 
+      window.location.href = '/sign-in';  
     } finally {
       setIsSigningOut(false);
-      router.push('/sign-in');
     }
   }
 

@@ -1,10 +1,10 @@
-import { getFormattedDate } from "@/lib/utils";
-import PostComments from "./Comments";
-import { PostProps } from "./PostCard";
+import PostComments from "@/app/(main)/blog/[slug]/Comments";
+import { PostProps } from "@/app/(main)/blog/PostCard";
 import {  ArrowLeft, MessageCircle} from "lucide-react";
-import UpVotePost from "./UpVotePost";
-import { getPostComments} from "@/actions/action";
+import UpVotePost from "@/components/UpVotePost";
 import Link from "next/link";
+import { getFormattedDate } from "@/lib/utils";
+import { getPostComments} from "@/actions/action";
 
 export default async function PostPage({ post }: { post: PostProps | null }) {
   if (!post) {

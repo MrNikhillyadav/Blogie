@@ -1,4 +1,4 @@
-import AllPostComponents from "./AllPostComponents";
+import AllPostComponents from "@/app/(main)/blog/AllPostComponents";
 
 export default function BlogPage(){
   return (

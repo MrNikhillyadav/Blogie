@@ -1,4 +1,4 @@
-import { PostProps } from "./PostCard";
+import { PostProps } from "../PostCard";
 import CommentCard from "./CommentCard";
 import { getPostComments, getUser, commentOnPost } from "@/actions/action";
 import { CircleUser, Send } from "lucide-react"; 

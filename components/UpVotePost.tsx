@@ -3,7 +3,7 @@
 import { upvotePost } from "@/actions/action";
 import { ThumbsUp } from "lucide-react";
 import { useState } from "react";
-import { PostProps } from "./PostCard";
+import { PostProps } from "@/app/(main)/blog/PostCard";
 
 export default function UpVotePost({ post}: { post: PostProps }) {
   const [isUpvoted, setIsUpvoted] = useState(false);

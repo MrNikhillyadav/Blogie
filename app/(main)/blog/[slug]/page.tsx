@@ -1,4 +1,4 @@
-import PostPage from "@/components/PostPage";
+import PostPage from "./PostPage";
 import prisma from "@/lib/prisma";
 
 export default async function Blog({

@@ -1,4 +1,4 @@
-import { Github } from "lucide-react";
+import { FaGithub } from "react-icons/fa6";
 
 export default function Footer() {
   return (
@@ -6,8 +6,8 @@ export default function Footer() {
       <div className="min-h-screen">
         <div className="text-zinc-600 flex justify-between text-sm max-w-[800px] py-10 w-full mx-auto px-[30px] ">
           <p>Nikhil Yadav Blog</p>
-          <a className=" text-neutral-700 flex items-center justify-center " href={'https://github.com/MrNikhillyadav'}>
-            <Github className="w-4 h-4 rounded-full " />
+          <a className=" text-neutral-700 flex gap-1 items-center justify-center " href={'https://github.com/MrNikhillyadav'}>
+            <FaGithub className="w-4 h-4 rounded-full " />
             GitHub.
           </a> 
           <p>Full Stack Developer</p>

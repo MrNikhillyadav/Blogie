@@ -1,6 +1,6 @@
 import prisma from '@/lib/prisma'
 import Link from 'next/link'
-import PostCard from './PostCard'
+import PostCard from '@/app/(main)/blog/PostCard'
 
 export default async function AllPostComponents() {
   

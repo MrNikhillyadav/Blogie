@@ -14,8 +14,15 @@ export const auth = betterAuth({
   },
   
   session: {
-    expiresIn: 60 * 60 * 24 * 7, // 7 days
-  },
+     expiresIn: 60 * 60 * 24 * 7, // 7 days
+     updateAge: 60 * 60 * 24, // Refresh session every 1 day
+     cookieCache: {
+       enabled: true,
+       maxAge: 7 * 24 * 60 * 60, // 7 days
+       strategy: 'jwe',
+       refreshCache: true,
+     },
+   },
   
   socialProviders: {
          github: { 

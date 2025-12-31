@@ -1,15 +1,12 @@
-
 "use client";
 
 import { FaGoogle } from "react-icons/fa";
 import { FaGithub } from "react-icons/fa6";
 import { useState, useRef, useEffect } from "react";
-import { useRouter } from "next/navigation";
 import { signIn} from "@/lib/auth-client";
 import Link from "next/link";
 
 export default function SignInPage() {
-  const router = useRouter();
   const [isError, setIsError] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const emailRef = useRef<HTMLInputElement>(null);
@@ -34,7 +31,7 @@ export default function SignInPage() {
       setIsError(res.error.message || "Something went wrong.");
       setIsSubmitting(false);
     } else {
-      router.push("/blog");
+      window.location.href = "/blog";
     }
   }
   

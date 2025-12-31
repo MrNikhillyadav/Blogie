@@ -1,9 +1,9 @@
 "use client"
 
-import { upVoteComment, replyToComment, replyToCommentAction } from "@/actions/action";
+import { upVoteComment, replyToCommentAction } from "@/actions/action";
 import { getFormattedDate } from "@/lib/utils"
 import { ArrowBigDown, ArrowBigUp, MessageCircle, Send } from "lucide-react"
-import { Vote } from "./PostCard";
+import { Vote } from "../PostCard";
 import { useState, useTransition } from "react";
 
 interface CommentProps {
@@ -28,7 +28,7 @@ interface User {
 
 export default function CommentCard({ comment,postId }: { comment: CommentProps, postId : number }) {
   const [isCommentInputOpen, setIsCommentInputOpen] = useState(false);
-  const [isPending, startTransition] = useTransition();
+  const [isPending] = useTransition();
 
 
   return (
@@ -65,7 +65,9 @@ export default function CommentCard({ comment,postId }: { comment: CommentProps,
 
       {/* Reply Form - shows when reply button clicked */}
       {isCommentInputOpen && (
-        <form action={replyToCommentAction} className="mt-3 p-2 border border-zinc-400 bg-zinc-100 text-xs rounded-md">
+        <form 
+          action={replyToCommentAction}
+          className="mt-3 p-2 border border-zinc-400 bg-zinc-100 text-xs rounded-md">
           <input 
             name="content"
             className="w-full p-2 border border-zinc-300 rounded-md text-sm outline-none focus:border-orange-600"
